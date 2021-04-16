@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+//Carrega o Composer
+require_once 'vendor/autoload.php';
+
+use Ejetar\LeitorHospedagem\Account;
+use Ejetar\LeitorHospedagem\Session;
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
+//Cria nova sessão
+$session = new Session();
+//Faz login no CWP como root
+if (!$session->login($_ENV['CWP_USERNAME'], $_ENV['CWP_PASSWORD']))
+	throw new \Exception("Não foi possível autenticar!");
+
+//Retorna lista de contas
+$accounts = Account::getList($session);
+if ($accounts === false)
+	throw new \Exception("Não foi possível obter lista de contas!");
+
+$mask = "%-10s%-10s%-10s%-10s\n";
+printf(
+	$mask,
+	"CONTA",
+	"E-MAILS",
+	"MYSQL",
+	"HOME"
+);
+
+foreach($accounts as $account) {
+	printf(
+		$mask,
+		$account->name,
+		number_format($account->getMailSpace(),4)."GB",
+		number_format($account->getMysqlSpace(),4)."GB",
+		number_format($account->getHomeSpace(),4)."GB",
+	);
+}

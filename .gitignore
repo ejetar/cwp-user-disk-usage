@@ -1,0 +1,6 @@
+.idea
+vendor
+.exclude-files
+composer.lock
+rsync
+.env

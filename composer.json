@@ -1,0 +1,43 @@
+{
+    "name": "ejetar/cwp-user-disk-usage",
+    "description": "This is a lightweight \uD83C\uDF43 PHP CLI script that returns disk usage by CWP accounts (Centos Web Panel)",
+    "homepage": "https://ejetar.com/projects/cwp-user-disk-usage",
+    "type": "project",
+    "license": "MIT",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Guilherme Almeida Girardi",
+            "email": "guilhermeagirardi@gmail.com",
+            "homepage": "https://guilhermegirardi.com",
+            "role": "Developer"
+        }
+    ],
+    "keywords": [
+        "php",
+        "disk",
+        "usage",
+        "account",
+        "user",
+        "space",
+        "quota",
+        "du",
+        "df",
+        "cwp"
+    ],
+    "require": {
+        "php": ">=8.0",
+        "nategood/httpful": "^0.3.2",
+        "vlucas/phpdotenv": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ejetar\\LeitorHospedagem\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
